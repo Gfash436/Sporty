@@ -4,6 +4,10 @@ import 'package:sporty/Constants/size_config.dart';
 import 'package:sporty/Provider/authProvider.dart';
 
 import 'package:sporty/Screens/Authentication/forgotPassword.dart';
+import 'package:sporty/Screens/HomePage/discover.dart';
+import 'package:sporty/Screens/HomePage/homePage.dart';
+import 'package:sporty/Screens/HomePage/profile.dart';
+import 'package:sporty/Screens/HomePage/settings.dart';
 import 'package:sporty/Utilities/colors.dart';
 import 'package:sporty/Utilities/snack_messages.dart';
 import 'package:sporty/Widgets/textField.dart';
@@ -45,68 +49,44 @@ class _LoginPageState extends State<LoginPage> {
         body: SingleChildScrollView(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
+              padding: const EdgeInsets.fromLTRB(20, 73, 20, 0),
               child: Column(children: [
                 myText(
-                    text: 'Sign In',
+                    text: 'Login',
                     color: textColor,
                     fontSize: 24,
-                    fontWeight: FontWeight.w700),
-                const SizedBox(height: 32),
+                    fontWeight: FontWeight.w600),
+                const SizedBox(height: 77),
                 customTextField(
-                    title: 'Email Address',
+                    title: 'Email',
                     hint: 'example@gmail.com',
                     controller: _loginEmailController,
                     keyboardType: TextInputType.emailAddress),
                 const SizedBox(height: 16),
                 passwordTextField(
                     title: 'Password',
-                    hint: 'enter password',
+                    hint: '********',
                     controller: _loginPasswordController),
-                Row(children: [
-                  Checkbox(
-                    value: _checked,
-                    onChanged: (
-                      bool? value,
-                    ) {
-                      setState(() {
-                        _checked = !_checked;
-                      });
+                Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => const ForgotPassword()));
                     },
-                  ),
-                  SizedBox(
-                    width: getProportionateScreenWidth(280),
-                    child: Row(
-                      children: [
-                        myText(
-                            text: 'Remember me',
-                            color: textColor,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                        const Spacer(),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                    builder: (context) =>
-                                        const ForgotPassword()));
-                          },
-                          child: myText(
-                              pressed: () {
-                                PageNavigator(ctx: context)
-                                    .nextPage(page: const ForgotPassword());
-                              },
-                              text: 'Forgot Password',
-                              color: green,
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
-                    ),
+                    child: myText(
+                        pressed: () {
+                          PageNavigator(ctx: context)
+                              .nextPage(page: const ForgotPassword());
+                        },
+                        text: 'Forgot Password ?',
+                        color: textColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500),
                   )
                 ]),
-                const SizedBox(height: 24),
+                const SizedBox(height: 62),
                 Consumer<AuthenticationProvider>(
                     builder: (context, auth, snapshot) {
                   WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -119,42 +99,18 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   });
                   return customButton(
-                      context: context,
-                      text: 'Sign In',
-                      tap: (() {
-                        auth.LoginUser(
-                            email: _loginEmailController.text.trim(),
-                            password: _loginPasswordController.text,
-                            context: context);
-                        // }
-                      }));
+                    context: context,
+                    text: 'Login',
+                    tap: (() {
+                      PageNavigator(ctx: context)
+                          .nextPage(page: const HomePage());
+                      // auth.LoginUser(
+                      //     email: _loginEmailController.text.trim(),
+                      //     password: _loginPasswordController.text,
+                      //     context: context);
+                    }),
+                  );
                 }),
-                const SizedBox(height: 24),
-                SizedBox(
-                  width: getProportionateScreenWidth(300),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                          child: Divider(
-                        thickness: 1,
-                        color: lightGrey,
-                      )),
-                      myText(
-                          text: ' or ',
-                          color: textColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),
-                      Expanded(
-                        child: Divider(
-                          color: lightGrey,
-                          thickness: 1,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
                 const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -170,8 +126,8 @@ class _LoginPageState extends State<LoginPage> {
                             .nextPage(page: const SignUpPage());
                       },
                       child: myText(
-                          text: 'Sign Up.',
-                          color: green,
+                          text: 'Register.',
+                          color: blue,
                           fontSize: 13,
                           fontWeight: FontWeight.w400),
                     )

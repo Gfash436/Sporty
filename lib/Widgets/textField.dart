@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sporty/Constants/size_config.dart';
 import 'package:sporty/Utilities/colors.dart';
 
@@ -16,8 +17,8 @@ Widget customTextField(
           title!,
           style: TextStyle(
             fontFamily: 'Nunito',
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
+            fontSize: 16,
+            fontWeight: FontWeight.w300,
             color: textColor,
           ),
         ),
@@ -31,7 +32,7 @@ Widget customTextField(
             // vertical: getProportionateScreenHeight(5),
             horizontal: getProportionateScreenWidth(10)),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8), color: lightGrey),
+            borderRadius: BorderRadius.circular(10), color: lightGrey),
         child: TextFormField(
           keyboardType: keyboardType,
           controller: controller,
@@ -73,8 +74,8 @@ class _passwordTextFieldState extends State<passwordTextField> {
             widget.title!,
             style: TextStyle(
               fontFamily: 'Nunito',
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
+              fontSize: 16,
+              fontWeight: FontWeight.w300,
               color: textColor,
             ),
           ),
@@ -94,7 +95,10 @@ class _passwordTextFieldState extends State<passwordTextField> {
             controller: widget.controller,
             decoration: InputDecoration(
                 hintText: widget.hint,
-                hintStyle: TextStyle(color: textColor),
+                hintStyle: TextStyle(
+                    color: textColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500),
                 border: InputBorder.none,
                 suffixIcon: IconButton(
                   onPressed: () {
@@ -111,4 +115,30 @@ class _passwordTextFieldState extends State<passwordTextField> {
       ],
     );
   }
+}
+
+Widget codeBox(BuildContext context) {
+  return SizedBox(
+    height: 40,
+    width: 40,
+    child: TextFormField(
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: BorderSide(color: ash)),
+      ),
+      onChanged: (value) {
+        if (value.length == 1) {
+          FocusScope.of(context).nextFocus();
+        }
+      },
+      style: Theme.of(context).textTheme.titleLarge,
+      keyboardType: TextInputType.number,
+      textAlign: TextAlign.center,
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(1),
+        FilteringTextInputFormatter.digitsOnly,
+      ],
+    ),
+  );
 }

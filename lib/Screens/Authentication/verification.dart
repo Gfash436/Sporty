@@ -31,41 +31,40 @@ class _VerificationState extends State<Verification> {
             body: SingleChildScrollView(
                 child: Center(
                     child: Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                        padding: const EdgeInsets.fromLTRB(20, 73, 20, 0),
                         child: Column(children: [
                           myText(
                               text: 'Verification',
                               color: textColor,
                               fontSize: 24,
-                              fontWeight: FontWeight.w700),
-                          const SizedBox(height: 32),
+                              fontWeight: FontWeight.w600),
+                          const SizedBox(height: 8),
                           Row(
                             children: [
                               myText(
+                                  textAlign: TextAlign.center,
                                   text:
-                                      'Code will be sent to jiona******gmail.com',
+                                      'Enter the Verification  code  send to your\nPhone Number ',
                                   color: textColor,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400),
                             ],
                           ),
-                          const SizedBox(height: 8),
-                          customTextField(
-                              title: 'Email Address',
-                              hint: 'example@gmail.com',
-                              controller: _emailController,
-                              keyboardType: TextInputType.emailAddress),
-                          const SizedBox(height: 8),
-                          Row(
-                            children: [
-                              myText(
-                                  text: 'Code expires in 2 minutes',
-                                  color: lightGrey,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500),
-                            ],
+                          const SizedBox(height: 84),
+
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(60, 0, 60, 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                codeBox(context),
+                                codeBox(context),
+                                codeBox(context),
+                                codeBox(context),
+                              ],
+                            ),
                           ),
-                          const SizedBox(height: 24),
+                          const SizedBox(height: 64),
                           customButton(
                               context: context,
                               text: 'Continue',
@@ -73,7 +72,8 @@ class _VerificationState extends State<Verification> {
                                 Navigator.pushReplacement(
                                     context,
                                     CupertinoPageRoute(
-                                        builder: (context) => LoginPage()));
+                                        builder: (context) =>
+                                            const LoginPage()));
                               })),
                           // const SizedBox(height: 16),
                           // GestureDetector(

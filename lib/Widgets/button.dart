@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sporty/Utilities/colors.dart';
-import 'package:sporty/Utilities/colors.dart';
-
-import '../Constants/size_config.dart';
-import 'image.dart';
-import 'myText.dart';
 
 Widget customButton(
     {VoidCallback? tap,
@@ -15,19 +10,19 @@ Widget customButton(
   return GestureDetector(
       onTap: status == true ? null : tap,
       child: Container(
-          height: 49,
+          height: 54,
           margin: const EdgeInsets.symmetric(
             vertical: 15,
           ),
           alignment: Alignment.center,
           decoration: BoxDecoration(
               color: status == false ? blue : lightGrey,
-              borderRadius: BorderRadius.circular(8)),
+              borderRadius: BorderRadius.circular(10)),
           width: double.infinity,
           child: Text(
             status == false ? text! : 'Please wait...',
             style: TextStyle(
-                color: white, fontSize: 16, fontWeight: FontWeight.w700),
+                color: white, fontSize: 24, fontWeight: FontWeight.w600),
           )));
 }
 

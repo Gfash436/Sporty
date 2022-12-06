@@ -25,23 +25,19 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     return Scaffold(
+      backgroundColor: blue,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            image('assets/images/logo.png'),
+            image('assets/images/splash.png'),
+            const SizedBox(height: 32),
             myText(
               text: 'Sporty',
-              fontSize: 32,
-              fontWeight: FontWeight.w800,
-              color: textColor,
+              fontSize: 40,
+              fontWeight: FontWeight.w700,
+              color: white,
             ),
-            myText(
-              text: 'Here for Your daily needs',
-              fontSize: 13,
-              fontWeight: FontWeight.w400,
-              color: textColor,
-            )
           ],
         ),
       ),
@@ -49,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigate() {
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 5), () {
       PageNavigator(ctx: context).nextPageOnly(page: const OnboardingScreen());
     });
   }

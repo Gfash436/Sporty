@@ -6,9 +6,9 @@ import '../../Widgets/myText.dart';
 class onboardingContent extends StatelessWidget {
   const onboardingContent({
     Key? key,
-    required this.desc,
     required this.image,
     required this.title,
+    required this.desc,
   }) : super(key: key);
   final String image, title, desc;
   @override
@@ -22,7 +22,7 @@ class onboardingContent extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: getProportionateScreenWidth(36),
+          height: getProportionateScreenWidth(20),
         ),
         myText(
           text: title,
@@ -32,7 +32,7 @@ class onboardingContent extends StatelessWidget {
           color: const Color(0xff353535),
         ),
         SizedBox(
-          height: getProportionateScreenWidth(19),
+          height: getProportionateScreenWidth(16),
         ),
         myText(
           text: desc,

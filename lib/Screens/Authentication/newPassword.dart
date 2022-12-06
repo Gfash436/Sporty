@@ -34,24 +34,24 @@ class _NewPasswordState extends State<NewPassword> {
             body: SingleChildScrollView(
                 child: Center(
                     child: Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                        padding: const EdgeInsets.fromLTRB(20, 73, 20, 0),
                         child: Column(children: [
                           myText(
                               text: 'Create New Password',
                               color: textColor,
                               fontSize: 24,
                               fontWeight: FontWeight.w700),
-                          const SizedBox(height: 32),
+                          const SizedBox(height: 77),
                           passwordTextField(
-                              title: 'Password',
-                              hint: 'enter password',
+                              title: 'New Password',
+                              hint: '********',
                               controller: _passwordController),
                           const SizedBox(height: 16),
                           passwordTextField(
-                              title: 'Confirm Password',
-                              hint: 'enter password',
+                              title: 'Confirm New Password',
+                              hint: '********',
                               controller: _confirmPasswordController),
-                          const SizedBox(height: 24),
+                          const SizedBox(height: 64),
                           customButton(
                               context: context,
                               text: 'Continue',
