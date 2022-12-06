@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sporty/Provider/authProvider.dart';
-import 'package:sporty/splashScreen.dart';
+import 'package:sporty/Screens/splashScreen.dart';
 
 void main() {
   runApp(const MyApp());

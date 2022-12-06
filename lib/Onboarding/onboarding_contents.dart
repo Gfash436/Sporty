@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sporty/Utilities/colors.dart';
 
 import '../../Constants/size_config.dart';
 import '../../Widgets/myText.dart';
@@ -27,18 +28,19 @@ class onboardingContent extends StatelessWidget {
         myText(
           text: title,
           textAlign: TextAlign.center,
-          fontSize: getProportionateScreenHeight(28),
-          fontWeight: FontWeight.bold,
-          color: const Color(0xff353535),
+          fontSize: 24,
+          fontWeight: FontWeight.w700,
+          color: textColor,
         ),
         SizedBox(
           height: getProportionateScreenWidth(16),
         ),
         myText(
           text: desc,
-          fontSize: getProportionateScreenHeight(13),
+          textAlign: TextAlign.center,
+          fontSize: 16,
           fontWeight: FontWeight.w400,
-          color: const Color(0xff353535),
+          color: textColor,
         ),
       ],
     );

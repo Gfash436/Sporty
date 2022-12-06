@@ -12,15 +12,15 @@ class Buddle extends StatelessWidget {
         child: Center(
           child: Column(children: [
             const SizedBox(height: 73),
-            const myText(
+            myText(
               text: 'Buddle',
+              color: textColor,
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
             const SizedBox(height: 60),
-            myText(
+            const myText(
               text: 'Welcome to Sporty',
-              color: textColor,
               fontSize: 35,
               fontWeight: FontWeight.bold,
             ),

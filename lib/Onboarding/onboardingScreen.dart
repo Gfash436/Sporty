@@ -23,21 +23,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final List<Map<String, String>> onboarding = [
     {
       "image": "assets/images/onboarding1.png",
-      "title": "We sell incredibly fresh \nproduce",
+      "title": "Welcome to Sporty App",
       "desc":
-          "We provide low to mid-income earners in urban cities\nwith accessible, affordable and quality poultry and fish\nproduce to their doorstep to ensure they are well-fed",
+          "Sporty App is where we\nhelp your with your\nintrested field in sport",
     },
     {
       "image": "assets/images/onboarding2.png",
-      "title": "Providing a wide range of\n agriculture commodities",
+      "title": "Choose a Favorite  sport",
       "desc":
-          "We focus on the health of our soil and are pride ourselves\non being good stewards for all our resources.We enhance\nvalue by building connections across the food value chain",
+          "We are allow one to choose a\nfavorite sport of your choice and\nbuild yourself",
     },
     {
       "image": "assets/images/onboarding3.png",
-      "title": "Fresh from our Farm with\n love",
+      "title": "Building An Intrested Field",
       "desc":
-          "We are ready to optimise the entire value chain to \nmake farm produce sustainable, more accessible and \naffordable to Africans. A place you order easily.",
+          "We help one in building an\nIntrested Field of your choice in\nsport",
     },
   ];
 

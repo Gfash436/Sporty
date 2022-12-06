@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:sporty/Screens/HomePage/buddle.dart';
 import 'package:sporty/Screens/HomePage/discover.dart';
 import 'package:sporty/Screens/HomePage/profile.dart';
-import 'package:sporty/Screens/HomePage/settings.dart';
+import 'package:sporty/Screens/HomePage/Settings/settings.dart';
 import 'package:sporty/Utilities/colors.dart';
 
 class HomePage extends StatefulWidget {

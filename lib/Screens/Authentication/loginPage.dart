@@ -4,10 +4,7 @@ import 'package:sporty/Constants/size_config.dart';
 import 'package:sporty/Provider/authProvider.dart';
 
 import 'package:sporty/Screens/Authentication/forgotPassword.dart';
-import 'package:sporty/Screens/HomePage/discover.dart';
 import 'package:sporty/Screens/HomePage/homePage.dart';
-import 'package:sporty/Screens/HomePage/profile.dart';
-import 'package:sporty/Screens/HomePage/settings.dart';
 import 'package:sporty/Utilities/colors.dart';
 import 'package:sporty/Utilities/snack_messages.dart';
 import 'package:sporty/Widgets/textField.dart';
@@ -19,6 +16,8 @@ import '../../Widgets/myText.dart';
 
 import 'signUpPage.dart';
 
+// The LoginPage class below contains all the application login features.
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -27,12 +26,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // Relevant controllers declared
   final TextEditingController _loginEmailController = TextEditingController();
   final TextEditingController _loginPasswordController =
       TextEditingController();
 
-  bool _checked = false;
-
+// An empty function to dispose all controllers after usage.
   @override
   void dispose() {
     _loginEmailController.clear();

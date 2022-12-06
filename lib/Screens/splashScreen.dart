@@ -3,9 +3,9 @@ import 'package:sporty/Constants/size_config.dart';
 import 'package:sporty/Onboarding/onboardingScreen.dart';
 import 'package:sporty/Utilities/routers.dart';
 
-import 'Utilities/colors.dart';
-import 'Widgets/image.dart';
-import 'Widgets/myText.dart';
+import '../Utilities/colors.dart';
+import '../Widgets/image.dart';
+import '../Widgets/myText.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

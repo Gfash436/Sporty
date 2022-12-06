@@ -17,16 +17,16 @@ class _DiscoverState extends State<Discover> {
         child: Center(
           child: Column(children: [
             const SizedBox(height: 73),
-            const myText(
+            myText(
               text: 'Discover',
+              color: textColor,
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
             const SizedBox(height: 60),
-            myText(
+            const myText(
               textAlign: TextAlign.center,
               text: 'Discover more about\nSporty',
-              color: textColor,
               fontSize: 35,
               fontWeight: FontWeight.bold,
             ),
