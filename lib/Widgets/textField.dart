@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sporty/Constants/size_config.dart';
+import 'package:sporty/Constants/validator.dart';
 import 'package:sporty/Utilities/colors.dart';
 
 Widget customTextField(
@@ -94,22 +95,22 @@ class _passwordTextFieldState extends State<passwordTextField> {
             obscureText: _visible,
             controller: widget.controller,
             decoration: InputDecoration(
-                hintText: widget.hint,
-                hintStyle: TextStyle(
-                    color: textColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500),
-                border: InputBorder.none,
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _visible = !_visible;
-                    });
-                  },
-                  icon: _visible
-                      ? Icon(Icons.visibility, color: textColor)
-                      : Icon(Icons.visibility_off, color: textColor),
-                )),
+              hintText: widget.hint,
+              hintStyle: TextStyle(
+                  color: textColor, fontSize: 16, fontWeight: FontWeight.w500),
+              border: InputBorder.none,
+              suffixIcon: IconButton(
+                onPressed: () {
+                  setState(() {
+                    _visible = !_visible;
+                  });
+                },
+                icon: _visible
+                    ? Icon(Icons.visibility, color: textColor)
+                    : Icon(Icons.visibility_off, color: textColor),
+              ),
+            ),
+            // validator: Validator().validatePassword,
           ),
         )
       ],

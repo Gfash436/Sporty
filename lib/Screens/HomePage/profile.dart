@@ -51,7 +51,14 @@ class _ProfileState extends State<Profile> {
                 fontWeight: FontWeight.w500,
               ),
               myText(
-                text: '04012345674',
+                text: '08012345674',
+                textAlign: TextAlign.center,
+                color: textColor,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+              myText(
+                text: 'Football',
                 textAlign: TextAlign.center,
                 color: textColor,
                 fontSize: 14,

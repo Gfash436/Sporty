@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sporty/Utilities/colors.dart';
 
 //project imports
 

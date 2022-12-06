@@ -43,7 +43,8 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
-  bool _checked = false;
+  bool isLoading = false;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -60,158 +61,179 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     return SafeArea(
-        child: Scaffold(
-            backgroundColor: white,
-            body: SingleChildScrollView(
-              child: Center(
-                  child: Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 73, 20, 20),
-                      child: Column(children: [
-                        myText(
-                            text: 'Create an Account',
+      child: Scaffold(
+        backgroundColor: white,
+        body: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 73, 20, 20),
+              child: Column(
+                children: [
+                  myText(
+                      text: 'Create an Account',
+                      color: textColor,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600),
+                  const SizedBox(height: 48),
+                  customTextField(
+                      title: 'User Name',
+                      hint: 'Enter user name',
+                      controller: _userNameController,
+                      keyboardType: TextInputType.name),
+                  const SizedBox(height: 16),
+                  customTextField(
+                      title: 'Phone Number',
+                      hint: 'Enter phone number',
+                      controller: _phoneController,
+                      keyboardType: TextInputType.phone),
+                  const SizedBox(height: 16),
+                  customTextField(
+                      title: 'Email',
+                      hint: 'example@gmail.com',
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress),
+                  const SizedBox(height: 16),
+                  passwordTextField(
+                      title: 'Password',
+                      hint: '********',
+                      controller: _passwordController),
+                  const SizedBox(height: 16),
+                  Column(
+                    children: [
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Interested Field',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
                             color: textColor,
-                            fontSize: 24,
-                            fontWeight: FontWeight.w600),
-                        const SizedBox(height: 48),
-                        customTextField(
-                            title: 'User Name',
-                            hint: 'Enter user name',
-                            controller: _userNameController,
-                            keyboardType: TextInputType.name),
-                        const SizedBox(height: 16),
-                        customTextField(
-                            title: 'Phone Number',
-                            hint: 'Enter phone number',
-                            controller: _phoneController,
-                            keyboardType: TextInputType.phone),
-                        const SizedBox(height: 16),
-                        customTextField(
-                            title: 'Email',
-                            hint: 'example@gmail.com',
-                            controller: _emailController,
-                            keyboardType: TextInputType.emailAddress),
-                        const SizedBox(height: 16),
-                        passwordTextField(
-                            title: 'Password',
-                            hint: '********',
-                            controller: _passwordController),
-                        const SizedBox(height: 16),
-                        Column(
-                          children: [
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                'Interested Field',
-                                style: TextStyle(
-                                  fontFamily: 'Nunito',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w300,
-                                  color: textColor,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Container(
-                              height: getProportionateScreenHeight(54),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: getProportionateScreenWidth(10)),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: lightGrey),
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton2(
-                                  hint: Text(
-                                    'Select field',
-                                    style: TextStyle(
-                                      color: textColor,
-                                    ),
-                                  ),
-                                  icon: const Icon(Icons.keyboard_arrow_down),
-                                  iconSize: 30,
-                                  iconDisabledColor: lightGrey,
-                                  items: fields
-                                      .map((role) => DropdownMenuItem<String>(
-                                            value: role,
-                                            child: Text(
-                                              role,
-                                              style: const TextStyle(
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ))
-                                      .toList(),
-                                  value: selectedValue,
-                                  onChanged: (value) {
-                                    _roleController.text = value!;
-                                    setState(() {
-                                      selectedValue = value as String;
-                                    });
-                                  },
-                                  buttonPadding:
-                                      const EdgeInsetsDirectional.only(end: 8),
-                                  buttonHeight: 40,
-                                  buttonWidth:
-                                      MediaQuery.of(context).size.width,
-                                  itemHeight: 40,
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                        const SizedBox(height: 64),
-                        Consumer<AuthenticationProvider>(
-                            builder: (context, auth, snapshot) {
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            if (auth.resMessage != "") {
-                              successMessage(
-                                  message: auth.resMessage, context: context);
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        height: getProportionateScreenHeight(54),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: getProportionateScreenWidth(10)),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: lightGrey),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton2(
+                            hint: Text(
+                              'Select field',
+                              style: TextStyle(
+                                color: textColor,
+                              ),
+                            ),
+                            icon: const Icon(Icons.keyboard_arrow_down),
+                            iconSize: 30,
+                            iconDisabledColor: lightGrey,
+                            items: fields
+                                .map((role) => DropdownMenuItem<String>(
+                                      value: role,
+                                      child: Text(
+                                        role,
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ))
+                                .toList(),
+                            value: selectedValue,
+                            onChanged: (value) {
+                              _roleController.text = value!;
+                              setState(() {
+                                selectedValue = value as String;
+                              });
+                            },
+                            buttonPadding:
+                                const EdgeInsetsDirectional.only(end: 8),
+                            buttonHeight: 40,
+                            buttonWidth: MediaQuery.of(context).size.width,
+                            itemHeight: 40,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 64),
+                  Consumer<AuthenticationProvider>(
+                      builder: (context, auth, snapshot) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      if (auth.resMessage != "") {
+                        successMessage(
+                            message: auth.resMessage, context: context);
 
-                              //clear the response message to avoide duplicate
-                              auth.clear();
-                            }
-                          });
-                          return customButton(
-                              context: context,
-                              text: 'Register',
-                              tap: (() {
-                                PageNavigator(ctx: context)
-                                    .nextPage(page: const Verification());
-                                // auth.signupUser(
-                                //     firstName: _userNameController.text.trim(),
-                                //     email: _emailController.text.trim(),
-                                //     phoneNumber: _phoneController.text.trim(),
-                                //     role: _roleController.text,
-                                //     password: _passwordController.text,
-                                //     confirmPassword:
-                                //         _confirmPasswordController.text,
-                                //     context: context);
-                              }));
-                        }),
-                        const SizedBox(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const myText(
-                                text: "Already have an account? ",
-                                fontSize: 13,
-                                fontWeight: FontWeight.w400),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    CupertinoPageRoute(
-                                        builder: (context) =>
-                                            const LoginPage()));
-                              },
-                              child: myText(
-                                  text: 'Login',
-                                  color: blue,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        )
-                      ]))),
-            )));
+                        //clear the response message to avoide duplicate
+                        auth.clear();
+                      }
+                    });
+                    return customButton(
+                        context: context,
+                        text: 'Register',
+                        tap: (() {
+                          if (_formKey.currentState!.validate()) {
+                            setState(() {
+                              isLoading = true;
+                            });
+                            PageNavigator(ctx: context)
+                                .nextPage(page: const Verification());
+                            Future.delayed(const Duration(seconds: 4))
+                                .then((value) {
+                              isLoading = false;
+                              setState(() {});
+                            });
+                          }
+
+                          // auth.signupUser(
+                          //     firstName: _userNameController.text.trim(),
+                          //     email: _emailController.text.trim(),
+                          //     phoneNumber: _phoneController.text.trim(),
+                          //     role: _roleController.text,
+                          //     password: _passwordController.text,
+                          //     confirmPassword:
+                          //         _confirmPasswordController.text,
+                          //     context: context);
+                        }));
+                  }),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const myText(
+                          text: "Already have an account? ",
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacement(
+                              context,
+                              CupertinoPageRoute(
+                                  builder: (context) => const LoginPage()));
+                        },
+                        child: isLoading == false
+                            ? Center(
+                                child: myText(
+                                    text: 'Login',
+                                    color: blue,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400),
+                              )
+                            : const Center(
+                                child: CircularProgressIndicator(
+                                    color: Colors.white)),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
